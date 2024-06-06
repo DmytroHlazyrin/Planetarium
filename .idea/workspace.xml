@@ -5,29 +5,50 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13c442fc-6cfc-44f4-b68d-481473d3c5d0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/Planetarium.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Planetarium/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Planetarium/asgi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Planetarium/settings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Planetarium/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Planetarium/wsgi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shows/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shows/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shows/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shows/fixtures/initial_data.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shows/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shows/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shows/serializers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shows/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shows/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shows/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Planetarium/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/Planetarium/asgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Planetarium/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Planetarium/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Planetarium/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Planetarium/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Planetarium/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/Planetarium/wsgi.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="package.json" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "DmytroHlazyrin"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/DmytroHlazyrin/Planetarium.git",
+    "accountId": "3279f1a2-7c92-41a3-bbfd-0c13bf5ba46c"
+  }
+}]]></component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 1
 }]]></component>
@@ -39,9 +60,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Django Server.Planetarium.executor": "Run",
     "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "develop",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -58,6 +80,7 @@
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="Planetarium.settings" />
       </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="" />
@@ -92,7 +115,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1717674916012</updated>
-      <workItem from="1717674972990" duration="707000" />
+      <workItem from="1717674972990" duration="3563000" />
     </task>
     <servers />
   </component>
