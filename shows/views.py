@@ -15,11 +15,13 @@ from .serializers import (
     ReservationSerializer,
     TicketSerializer,
 )
+from .permissions import IsAdminOrIfAuthenticatedReadOnly
 
 
 class AstronomyShowViewSet(viewsets.ModelViewSet):
     queryset = AstronomyShow.objects.all()
     serializer_class = AstronomyShowSerializer
+    permission_classes = (IsAdminOrIfAuthenticatedReadOnly,)
 
 
 class ShowThemeViewSet(viewsets.ModelViewSet):
