@@ -1,65 +1,230 @@
 from rest_framework import serializers
-from .models import (
-    AstronomyShow,
-    ShowTheme,
-    PlanetariumDome,
-    ShowSession,
-    Reservation,
+from rest_framework.validators import UniqueTogetherValidator, UniqueValidator
+
+from shows.models import (
     Ticket,
+    Reservation,
+    ShowSession,
+    AstronomyShow,
+    PlanetariumDome,
+    ShowTheme,
 )
+from user.models import User
+from user.serializers import UserSerializer
 
 
 class ShowThemeSerializer(serializers.ModelSerializer):
+    name = serializers.CharField(
+        validators=[UniqueValidator(queryset=ShowTheme.objects.all())]
+    )
+
     class Meta:
         model = ShowTheme
-        fields = ("id", "name")
+        fields = ("name",)
 
 
 class PlanetariumDomeSerializer(serializers.ModelSerializer):
     class Meta:
         model = PlanetariumDome
-        fields = ("id", "name", "rows", "seats_in_row", "capacity")
+        fields = ("rows", "seats_in_row")
 
 
 class AstronomyShowSerializer(serializers.ModelSerializer):
     class Meta:
         model = AstronomyShow
-        fields = ("id", "title", "description", "themes")
-
-
-class AstronomyShowListSerializer(AstronomyShowSerializer):
-    themes = serializers.SlugRelatedField(
-        many=True,
-        read_only=True,
-        slug_field="name"
-    )
-
-    class Meta:
-        model = AstronomyShow
-        fields = ("id", "title", "themes", "image")
-
-
-class AstronomyShowDetailSerializer(AstronomyShowSerializer):
-    themes = ShowThemeSerializer
-
-    class Meta:
-        model = AstronomyShow
-        fields = ("id", "title", "description", "themes", "image")
+        fields = ("title", "description", "show_theme")
 
 
 class ShowSessionSerializer(serializers.ModelSerializer):
     class Meta:
         model = ShowSession
-        fields = "__all__"
-
-
-class ReservationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Reservation
-        fields = "__all__"
+        fields = ("astronomy_show", "planetarium_dome", "show_time")
 
 
 class TicketSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ticket
-        fields = "__all__"
+        fields = ("id", "row", "seat", "show_session", "reservation")
+
+
+class ReservationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Reservation
+        fields = ("created_at", "user")
+
+
+"""Serializers for Ticket"""
+
+
+class TicketListSerializer(TicketSerializer):
+    show_session = serializers.CharField(
+        source="show_session.astronomy_show.title", read_only=True
+    )
+    reservation = serializers.CharField(
+        source="reservation.user", read_only=True
+    )
+    planetarium_dome = serializers.CharField(
+        source="show_session.planetarium_dome.name", read_only=True
+    )
+
+    class Meta:
+        model = Ticket
+        fields = (
+            "id",
+            "row",
+            "seat",
+            "show_session",
+            "reservation",
+            "planetarium_dome",
+        )
+
+
+class TicketCreateSerializer(TicketSerializer):
+    class Meta:
+        model = Ticket
+        fields = ("id", "row", "seat", "show_session")
+        validators = [
+            UniqueTogetherValidator(
+                queryset=Ticket.objects.all(), fields=["row", "seat"]
+            )
+        ]
+
+    def validate(self, attrs):
+        Ticket.validate_seats_row(
+            attrs["row"],
+            attrs["show_session"].planetarium_dome.rows,
+            attrs["seat"],
+            attrs["show_session"].planetarium_dome.seats_in_row,
+            serializers.ValidationError,
+        )
+        return attrs
+
+
+class UserTicketSerializer(UserSerializer):
+    reservation_for = serializers.CharField(source="username")
+
+    class Meta:
+        model = User
+        fields = ("reservation_for",)
+
+
+class ReservationDetailSerializer(ReservationSerializer):
+    visitor = UserTicketSerializer(source="user")
+
+    class Meta:
+        model = Reservation
+        fields = ("created_at", "visitor")
+
+
+class PlanetariumDomeTicketSerializer(PlanetariumDomeSerializer):
+    planetarium_name = serializers.CharField(source="name")
+
+    class Meta:
+        model = PlanetariumDome
+        fields = ("planetarium_name",)
+
+
+class AstronomyShowTicketSerializer(AstronomyShowSerializer):
+    show_name = serializers.CharField(source="title")
+    show_theme = serializers.SerializerMethodField()
+
+    class Meta:
+        model = AstronomyShow
+        fields = ("show_name", "show_theme")
+
+    @staticmethod
+    def get_show_theme(obj) -> list:
+        show_themes = obj.show_theme.all()
+        return [theme.name for theme in show_themes]
+
+
+class ShowSessionTicketSerializer(serializers.ModelSerializer):
+    planetarium_dome = PlanetariumDomeTicketSerializer()
+    astronomy_show = AstronomyShowTicketSerializer()
+
+    class Meta:
+        model = ShowSession
+        fields = ("show_time", "planetarium_dome", "astronomy_show")
+
+
+class TicketDetailSerializer(serializers.ModelSerializer):
+    reservation = ReservationDetailSerializer()
+    show_session = ShowSessionTicketSerializer()
+
+    class Meta:
+        model = Ticket
+        fields = ("id", "row", "seat", "show_session", "reservation")
+
+
+"""Serializers for AstronomyShow"""
+
+
+class AstronomyShowListSerializer(AstronomyShowSerializer):
+    show_name = serializers.CharField(source="title", read_only=True)
+    show_theme = ShowThemeSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = AstronomyShow
+        fields = ("show_name", "description", "show_theme", "image")
+
+
+class AstronomyShowCreateSerializer(AstronomyShowSerializer):
+    title = serializers.CharField(
+        validators=[UniqueValidator(queryset=AstronomyShow.objects.all())]
+    )
+
+    class Meta:
+        model = AstronomyShow
+        fields = ("title", "description", "show_theme", "image")
+
+
+class AstronomyShowImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AstronomyShow
+        fields = ("id", "image")
+
+
+"""Serializers for PlanetariumDome"""
+
+
+class PlanetariumDomeListSerializer(PlanetariumDomeSerializer):
+    planetarium_name = serializers.CharField(source="name", read_only=True)
+
+    class Meta:
+        model = PlanetariumDome
+        fields = ("planetarium_name", "rows", "seats_in_row")
+
+
+class PlanetariumDomeCreateSerializer(PlanetariumDomeSerializer):
+    name = serializers.CharField(
+        validators=[UniqueValidator(queryset=PlanetariumDome.objects.all())]
+    )
+
+    class Meta:
+        model = PlanetariumDome
+        fields = ("name", "rows", "seats_in_row")
+
+    def validate(self, attrs):
+        PlanetariumDome.validate_row_seats_in_row(
+            attrs["rows"], attrs["seats_in_row"], serializers.ValidationError
+        )
+        return attrs
+
+
+"""Serializers for ShowSession"""
+
+
+class ShowSessionListSerializer(ShowSessionSerializer):
+    astronomy_show = AstronomyShowListSerializer(read_only=True)
+    planetarium_dome = PlanetariumDomeListSerializer(read_only=True)
+
+    class Meta:
+        model = ShowSession
+        fields = ("astronomy_show", "planetarium_dome", "show_time")
+
+
+class ShowSessionCreateSerializer(ShowSessionSerializer):
+    class Meta:
+        model = ShowSession
+        fields = ("astronomy_show", "planetarium_dome", "show_time")
+
