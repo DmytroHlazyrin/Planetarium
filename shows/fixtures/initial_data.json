@@ -1,10 +1,25 @@
 [
   {
+    "model": "shows.showtheme",
+    "pk": 1,
+    "fields": {
+      "name": "Cosmology"
+    }
+  },
+  {
+    "model": "shows.showtheme",
+    "pk": 2,
+    "fields": {
+      "name": "Astrophysics"
+    }
+  },
+  {
     "model": "shows.astronomyshow",
     "pk": 1,
     "fields": {
       "title": "The Wonders of the Universe",
-      "description": "An amazing journey through the cosmos, exploring stars, planets, and galaxies."
+      "description": "An amazing journey through the cosmos, exploring stars, planets, and galaxies.",
+      "image": null
     }
   },
   {
@@ -12,23 +27,24 @@
     "pk": 2,
     "fields": {
       "title": "Black Holes: The Other Side of Infinity",
-      "description": "Discover the mysteries of black holes and their impact on the universe."
+      "description": "Discover the mysteries of black holes and their impact on the universe.",
+      "image": null
     }
   },
   {
-    "model": "shows.showtheme",
+    "model": "shows.astronomyshow_show_theme",
     "pk": 1,
     "fields": {
-      "name": "Cosmology",
-      "astronomy_show": 1
+      "astronomyshow_id": 1,
+      "showtheme_id": 1
     }
   },
   {
-    "model": "shows.showtheme",
+    "model": "shows.astronomyshow_show_theme",
     "pk": 2,
     "fields": {
-      "name": "Astrophysics",
-      "astronomy_show": 2
+      "astronomyshow_id": 2,
+      "showtheme_id": 2
     }
   },
   {
@@ -46,7 +62,7 @@
     "fields": {
       "astronomy_show": 1,
       "planetarium_dome": 1,
-      "show_time": "2024-06-10T15:00:00Z"
+      "show_time": "2024-06-10"
     }
   },
   {
@@ -55,7 +71,7 @@
     "fields": {
       "astronomy_show": 2,
       "planetarium_dome": 1,
-      "show_time": "2024-06-11T18:00:00Z"
+      "show_time": "2024-06-11"
     }
   },
   {

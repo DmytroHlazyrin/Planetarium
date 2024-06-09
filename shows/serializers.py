@@ -9,22 +9,42 @@ from .models import (
 )
 
 
-class AstronomyShowSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = AstronomyShow
-        fields = "__all__"
-
-
 class ShowThemeSerializer(serializers.ModelSerializer):
     class Meta:
         model = ShowTheme
-        fields = "__all__"
+        fields = ("id", "name")
 
 
 class PlanetariumDomeSerializer(serializers.ModelSerializer):
     class Meta:
         model = PlanetariumDome
-        fields = "__all__"
+        fields = ("id", "name", "rows", "seats_in_row", "capacity")
+
+
+class AstronomyShowSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AstronomyShow
+        fields = ("id", "title", "description", "themes")
+
+
+class AstronomyShowListSerializer(AstronomyShowSerializer):
+    themes = serializers.SlugRelatedField(
+        many=True,
+        read_only=True,
+        slug_field="name"
+    )
+
+    class Meta:
+        model = AstronomyShow
+        fields = ("id", "title", "themes", "image")
+
+
+class AstronomyShowDetailSerializer(AstronomyShowSerializer):
+    themes = ShowThemeSerializer
+
+    class Meta:
+        model = AstronomyShow
+        fields = ("id", "title", "description", "themes", "image")
 
 
 class ShowSessionSerializer(serializers.ModelSerializer):

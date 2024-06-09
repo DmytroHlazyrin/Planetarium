@@ -8,8 +8,10 @@ from .models import (
     Ticket,
 )
 from .serializers import (
-    AstronomyShowSerializer,
     ShowThemeSerializer,
+    AstronomyShowSerializer,
+    AstronomyShowListSerializer,
+    AstronomyShowDetailSerializer,
     PlanetariumDomeSerializer,
     ShowSessionSerializer,
     ReservationSerializer,
@@ -19,9 +21,16 @@ from .permissions import IsAdminOrIfAuthenticatedReadOnly
 
 
 class AstronomyShowViewSet(viewsets.ModelViewSet):
-    queryset = AstronomyShow.objects.all()
     serializer_class = AstronomyShowSerializer
+    queryset = AstronomyShow.objects.prefetch_related("themes")
     permission_classes = (IsAdminOrIfAuthenticatedReadOnly,)
+
+    def get_serializer_class(self):
+        if self.action == "list":
+            return AstronomyShowListSerializer
+        if self.action == "retrieve":
+            return AstronomyShowDetailSerializer
+        return self.serializer_class
 
 
 class ShowThemeViewSet(viewsets.ModelViewSet):
