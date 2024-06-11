@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
+import sys
 from datetime import timedelta
 from pathlib import Path
 
@@ -23,9 +24,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-d$jdnc1tp)ymtbak)6&097(p_1k!dbpr_xt+q00tutk6ocdj9v"
 
 # SECURITY WARNING: don't run with debug turned on in production!
+IS_RUNNING_TESTS = 'test' in sys.argv
+
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+]
 
 
 # Application definition
@@ -42,14 +48,12 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "drf_spectacular",
-    "debug_toolbar",
     "shows",
     "user",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -57,6 +61,18 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+if not IS_RUNNING_TESTS:
+    INSTALLED_APPS += [
+        'debug_toolbar',
+    ]
+    MIDDLEWARE += [
+        'debug_toolbar.middleware.DebugToolbarMiddleware',
+    ]
+
+DEBUG_TOOLBAR_CONFIG = {
+    'IS_RUNNING_TESTS': IS_RUNNING_TESTS
+}
 
 ROOT_URLCONF = "Planetarium.urls"
 
@@ -119,7 +135,7 @@ TIME_ZONE = "UTC"
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
