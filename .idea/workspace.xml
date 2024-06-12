@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13c442fc-6cfc-44f4-b68d-481473d3c5d0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.flake8" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Planetarium/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Planetarium/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shows/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/shows/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shows/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/shows/serializers.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -305,7 +308,7 @@
       <updated>1717674916012</updated>
       <workItem from="1717674972990" duration="13263000" />
       <workItem from="1717748578939" duration="7155000" />
-      <workItem from="1717953639032" duration="59509000" />
+      <workItem from="1717953639032" duration="62418000" />
     </task>
     <servers />
   </component>

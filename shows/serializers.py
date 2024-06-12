@@ -106,7 +106,7 @@ class TicketListSerializer(TicketSerializer):
         source="show_session.astronomy_show.title", read_only=True
     )
     reservation = serializers.CharField(
-        source="reservation.user.username", read_only=True
+        source="reservation.user.email", read_only=True
     )
     planetarium_dome = serializers.CharField(
         source="show_session.planetarium_dome.name", read_only=True
@@ -153,7 +153,7 @@ class UserTicketSerializer(UserSerializer):
 
 class ReservationDetailSerializer(ReservationSerializer):
     tickets = serializers.SerializerMethodField()
-    user = UserTicketSerializer()
+    user = UserSerializer()  # Изменено на UserSerializer
 
     class Meta:
         model = Reservation
@@ -195,15 +195,15 @@ class ShowSessionTicketSerializer(serializers.ModelSerializer):
 
 
 class TicketDetailSerializer(serializers.ModelSerializer):
-    reservation = serializers.SlugRelatedField(
-        slug_field="user",
-        read_only=True
-    )
+    reservation = serializers.SerializerMethodField()
     show_session = ShowSessionTicketSerializer()
 
     class Meta:
         model = Ticket
         fields = ("id", "row", "seat", "reservation", "show_session")
+
+    def get_reservation(self, obj):
+        return UserSerializer(obj.reservation.user).data
 
 
 class AstronomyShowListSerializer(AstronomyShowSerializer):

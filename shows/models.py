@@ -145,5 +145,5 @@ class Ticket(models.Model):
         return (
             f"row: {self.row}, seat: {self.seat}, "
             f"show_session: {self.show_session}, "
-            f"reservation: {self.reservation.user.email}"
+            f"reservation: {self.reservation.user}"
         )
