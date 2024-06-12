@@ -5,26 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13c442fc-6cfc-44f4-b68d-481473d3c5d0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shows/management/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shows/management/commands/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shows/management/commands/wait_for_db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Planetarium/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Planetarium/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shows/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/shows/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shows/tests/tests_astronomy_show.py" beforeDir="false" afterPath="$PROJECT_DIR$/shows/tests/test_astronomy_show.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shows/tests/tests_show_session.py" beforeDir="false" afterPath="$PROJECT_DIR$/shows/tests/test_show_session.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shows/tests/tests_show_theme.py" beforeDir="false" afterPath="$PROJECT_DIR$/shows/tests/test_show_theme.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shows/tests/tests_ticket.py" beforeDir="false" afterPath="$PROJECT_DIR$/shows/tests/test_ticket.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.flake8" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -128,6 +117,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.fileTypes",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -315,7 +305,7 @@
       <updated>1717674916012</updated>
       <workItem from="1717674972990" duration="13263000" />
       <workItem from="1717748578939" duration="7155000" />
-      <workItem from="1717953639032" duration="59273000" />
+      <workItem from="1717953639032" duration="59509000" />
     </task>
     <servers />
   </component>

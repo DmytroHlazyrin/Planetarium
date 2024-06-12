@@ -1,23 +1,37 @@
 from drf_spectacular.types import OpenApiTypes
-from drf_spectacular.utils import OpenApiParameter, extend_schema, OpenApiExample
+from drf_spectacular.utils import (
+    OpenApiParameter, extend_schema, OpenApiExample
+)
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
-from rest_framework.permissions import IsAuthenticated, SAFE_METHODS
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from shows.models import Ticket, AstronomyShow, PlanetariumDome, ShowSession, Reservation, ShowTheme
+
+from shows.models import (
+    Ticket, AstronomyShow, PlanetariumDome, ShowSession, Reservation, ShowTheme
+)
 from shows.permissions import IsAdminOrIfAuthenticatedReadOnly
 from shows.serializers import (
-    TicketSerializer, TicketDetailSerializer, TicketCreateSerializer,
+    TicketSerializer,
+    TicketDetailSerializer,
+    TicketCreateSerializer,
     TicketListSerializer,
-    AstronomyShowListSerializer, AstronomyShowCreateSerializer,
+    AstronomyShowListSerializer,
+    AstronomyShowCreateSerializer,
     PlanetariumDomeListSerializer,
-    PlanetariumDomeCreateSerializer, ShowSessionListSerializer,
+    PlanetariumDomeCreateSerializer,
+    ShowSessionListSerializer,
     ShowSessionCreateSerializer,
-    ShowThemeSerializer, AstronomyShowImageSerializer, AstronomyShowSerializer,
-    PlanetariumDomeSerializer, ReservationSerializer,
-    ReservationDetailSerializer, ReservationCreateSerializer,
+    ShowThemeSerializer,
+    AstronomyShowImageSerializer,
+    AstronomyShowSerializer,
+    PlanetariumDomeSerializer,
+    ReservationSerializer,
+    ReservationDetailSerializer,
+    ReservationCreateSerializer,
     ShowSessionSerializer
 )
+
 
 class TicketViewSet(viewsets.ModelViewSet):
     queryset = Ticket.objects.select_related(
@@ -37,17 +51,22 @@ class TicketViewSet(viewsets.ModelViewSet):
         return TicketSerializer
 
     def get_queryset(self):
-        queryset = self.queryset.filter(reservation__user=self.request.user).distinct()
+        queryset = self.queryset.filter(
+            reservation__user=self.request.user).distinct()
         show_session = self.request.query_params.get("show_session")
         reservation = self.request.query_params.get("reservation")
-        planetarium_dome = self.request.query_params.get("planetarium_dome")
+        dome = self.request.query_params.get("planetarium_dome")
 
         if show_session:
-            queryset = queryset.filter(show_session__astronomy_show__title__icontains=show_session)
+            queryset = queryset.filter(
+                show_session__astronomy_show__title__icontains=show_session)
         if reservation:
-            queryset = queryset.filter(reservation__user__email__icontains=reservation)
-        if planetarium_dome:
-            queryset = queryset.filter(show_session__planetarium_dome__name__icontains=planetarium_dome)
+            queryset = queryset.filter(
+                reservation__user__email__icontains=reservation)
+        if dome:
+            queryset = queryset.filter(
+                show_session__planetarium_dome__name__icontains=dome
+            )
         return queryset
 
     def perform_create(self, serializer):
@@ -123,7 +142,10 @@ class AstronomyShowViewSet(viewsets.ModelViewSet):
     @action(methods=["POST"], detail=True, url_path="upload-image")
     def upload_image(self, request, pk=None):
         astronomy_show = self.get_object()
-        serializer = self.get_serializer(astronomy_show, data=request.data)
+        serializer = self.get_serializer(
+            astronomy_show,
+            data=request.data
+        )
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -155,7 +177,7 @@ class AstronomyShowViewSet(viewsets.ModelViewSet):
             OpenApiExample(
                 "List Example",
                 summary="Example of listing astronomy shows",
-                description="An example response body for listing astronomy shows.",
+                description="An example response body for list astronomy show",
                 value=[
                     {
                         "id": 1,
@@ -169,7 +191,8 @@ class AstronomyShowViewSet(viewsets.ModelViewSet):
             OpenApiExample(
                 "Create Example",
                 summary="Example of creating an astronomy show",
-                description="An example request body for creating an astronomy show.",
+                description="An example request body for "
+                            "creating an astronomy show.",
                 value={
                     "title": "Galactic Journey",
                     "description": "Explore the galaxy...",
@@ -215,13 +238,14 @@ class PlanetariumDomeViewSet(viewsets.ModelViewSet):
             OpenApiParameter(name="rows", type=OpenApiTypes.INT,
                              description="Filter by rows(rows)"),
             OpenApiParameter(name="seats_in_row", type=OpenApiTypes.INT,
-                             description="Filter by seats_in_row(seats_in_row)"),
+                             description="Filter by seats_in_row"),
         ],
         examples=[
             OpenApiExample(
                 "List Example",
                 summary="Example of listing planetarium domes",
-                description="An example response body for listing planetarium domes.",
+                description="An example response body "
+                            "for listing planetarium domes.",
                 value=[
                     {
                         "id": 1,
@@ -234,7 +258,8 @@ class PlanetariumDomeViewSet(viewsets.ModelViewSet):
             OpenApiExample(
                 "Create Example",
                 summary="Example of creating a planetarium dome",
-                description="An example request body for creating a planetarium dome.",
+                description="An example request body "
+                            "for creating a planetarium dome.",
                 value={
                     "name": "Main Dome",
                     "rows": 20,
@@ -248,7 +273,8 @@ class PlanetariumDomeViewSet(viewsets.ModelViewSet):
 
 
 class ShowSessionViewSet(viewsets.ModelViewSet):
-    queryset = ShowSession.objects.all().select_related("astronomy_show", "planetarium_dome")
+    queryset = ShowSession.objects.all().select_related("astronomy_show",
+                                                        "planetarium_dome")
     permission_classes = [IsAdminOrIfAuthenticatedReadOnly]
 
     def get_serializer_class(self):
@@ -267,11 +293,14 @@ class ShowSessionViewSet(viewsets.ModelViewSet):
         price = self.request.query_params.get("price")
 
         if show_name:
-            queryset = queryset.filter(astronomy_show__title__icontains=show_name)
+            queryset = queryset.filter(
+                astronomy_show__title__icontains=show_name)
         if description:
-            queryset = queryset.filter(astronomy_show__description__icontains=description)
+            queryset = queryset.filter(
+                astronomy_show__description__icontains=description)
         if planetarium_dome:
-            queryset = queryset.filter(planetarium_dome__name__icontains=planetarium_dome)
+            queryset = queryset.filter(
+                planetarium_dome__name__icontains=planetarium_dome)
         if show_time:
             queryset = queryset.filter(show_time__icontains=show_time)
         if price:
@@ -295,7 +324,8 @@ class ShowSessionViewSet(viewsets.ModelViewSet):
             OpenApiExample(
                 "List Example",
                 summary="Example of listing show sessions",
-                description="An example response body for listing show sessions.",
+                description="An example response body "
+                            "for listing show sessions.",
                 value=[
                     {
                         "astronomy_show": {
@@ -316,7 +346,8 @@ class ShowSessionViewSet(viewsets.ModelViewSet):
             OpenApiExample(
                 "Create Example",
                 summary="Example of creating a show session",
-                description="An example request body for creating a show session.",
+                description="An example request body "
+                            "for creating a show session.",
                 value={
                     "astronomy_show": 1,
                     "planetarium_dome": 1,
@@ -384,7 +415,8 @@ class ReservationViewSet(viewsets.ModelViewSet):
             OpenApiExample(
                 "List Example",
                 summary="Example of listing reservations",
-                description="An example response body for listing reservations.",
+                description="An example response body "
+                            "for listing reservations.",
                 value=[
                     {
                         "id": 1,
@@ -418,7 +450,8 @@ class ReservationViewSet(viewsets.ModelViewSet):
             OpenApiExample(
                 "Create Example",
                 summary="Example of creating a reservation",
-                description="An example request body for creating a reservation.",
+                description="An example request body "
+                            "for creating a reservation.",
                 value={
                     "tickets": [
                         {
