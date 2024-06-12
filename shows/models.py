@@ -19,7 +19,6 @@ class AstronomyShow(models.Model):
     image = models.ImageField(upload_to=astronomy_show_image_path, null=True)
 
     def __str__(self):
-        show_themes = ", ".join(theme.name for theme in self.show_theme.all())
         return f"name_show: {self.title}, description: {self.description}"
 
 class ShowTheme(models.Model):
