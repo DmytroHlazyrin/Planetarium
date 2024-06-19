@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="13c442fc-6cfc-44f4-b68d-481473d3c5d0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Planetarium/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Planetarium/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shows/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/shows/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shows/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/shows/serializers.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,80 +47,81 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Django Server.Planetarium.executor": "Run",
-    "Django tests.Test: shows.tests.test_planetarium_dome.AuthenticatedShowThemeApiTests.executor": "Run",
-    "Django tests.Test: shows.tests.test_planetarium_dome.AuthenticatedShowThemeApiTests.test_list_planetarium_dome.executor": "Run",
-    "Django tests.Test: shows.tests.test_planetarium_dome.AuthenticatedShowThemeApiTests.test_not_create_planetarium_dome.executor": "Run",
-    "Django tests.Test: shows.tests.test_planetarium_dome.PlanetariumDomeFilteringApiTests.executor": "Run",
-    "Django tests.Test: shows.tests.test_planetarium_dome.PlanetariumModelsTests.executor": "Run",
-    "Django tests.Test: shows.tests.test_planetarium_dome.PlanetariumValidateTest.executor": "Run",
-    "Django tests.Test: shows.tests.test_planetarium_dome.PlanetariumValidateTest.test_planetarium_validate_serializers_name.executor": "Run",
-    "Django tests.Test: shows.tests.test_planetarium_dome.PlanetariumValidateTest.test_planetarium_validate_serializers_rows.executor": "Run",
-    "Django tests.Test: shows.tests.test_planetarium_dome.UnauthenticatedPlanetariumDomeApiTests.executor": "Run",
-    "Django tests.Test: shows.tests.test_planetarium_dome.executor": "Run",
-    "Django tests.Test: shows.tests.tests_astronomy_show.AstronomyShowFilteringApiTests.executor": "Run",
-    "Django tests.Test: shows.tests.tests_astronomy_show.AstronomyShowFilteringApiTests.test_filter_astronomy_show_title.executor": "Run",
-    "Django tests.Test: shows.tests.tests_astronomy_show.AstronomyShowValidation.executor": "Run",
-    "Django tests.Test: shows.tests.tests_astronomy_show.AuthenticatedAstronomyShowApiTests.executor": "Run",
-    "Django tests.Test: shows.tests.tests_astronomy_show.AuthenticatedAstronomyShowApiTests.test_admin_show_theme.executor": "Run",
-    "Django tests.Test: shows.tests.tests_astronomy_show.AuthenticatedAstronomyShowApiTests.test_list_astronomy_show.executor": "Run",
-    "Django tests.Test: shows.tests.tests_astronomy_show.ShowThemeModelsTests.executor": "Run",
-    "Django tests.Test: shows.tests.tests_astronomy_show.UnauthenticatedSAstronomyShowApiTests.executor": "Run",
-    "Django tests.Test: shows.tests.tests_astronomy_show.executor": "Run",
-    "Django tests.Test: shows.tests.tests_show_session.AuthenticatedShowSessionApiTests.test_admin_create_show_session.executor": "Run",
-    "Django tests.Test: shows.tests.tests_show_session.AuthenticatedShowSessionApiTests.test_list_show_session.executor": "Run",
-    "Django tests.Test: shows.tests.tests_show_session.AuthenticatedShowSessionApiTests.test_not_create_show_session.executor": "Run",
-    "Django tests.Test: shows.tests.tests_show_session.ShowSessionFilteringApiTests.test_filter_show_session_astronomy_description.executor": "Run",
-    "Django tests.Test: shows.tests.tests_show_session.ShowSessionFilteringApiTests.test_filter_show_session_astronomy_planetarium_dome_name.executor": "Run",
-    "Django tests.Test: shows.tests.tests_show_session.ShowSessionFilteringApiTests.test_filter_show_session_show_name.executor": "Run",
-    "Django tests.Test: shows.tests.tests_show_session.ShowSessionFilteringApiTests.test_filter_show_session_show_time.executor": "Run",
-    "Django tests.Test: shows.tests.tests_show_session.ShowSessionModelsTestsStr.executor": "Run",
-    "Django tests.Test: shows.tests.tests_show_session.ShowSessionModelsTestsStr.test_show_theme_str.executor": "Run",
-    "Django tests.Test: shows.tests.tests_show_session.UnauthenticatedSAstronomyShowApiTests.executor": "Run",
-    "Django tests.Test: shows.tests.tests_show_session.executor": "Run",
-    "Django tests.Test: shows.tests.tests_show_theme.AuthenticatedShowThemeApiTests.executor": "Run",
-    "Django tests.Test: shows.tests.tests_show_theme.AuthenticatedShowThemeApiTests.test_admin_show_theme.executor": "Run",
-    "Django tests.Test: shows.tests.tests_show_theme.AuthenticatedShowThemeApiTests.test_list_show_theme.executor": "Run",
-    "Django tests.Test: shows.tests.tests_show_theme.AuthenticatedShowThemeApiTests.test_not_create_show_theme.executor": "Run",
-    "Django tests.Test: shows.tests.tests_show_theme.ShowThemeFilteringApiTests.executor": "Run",
-    "Django tests.Test: shows.tests.tests_show_theme.ShowThemeFilteringApiTests.test_filter_show_theme_name.executor": "Run",
-    "Django tests.Test: shows.tests.tests_show_theme.ShowThemeModelsTests.executor": "Run",
-    "Django tests.Test: shows.tests.tests_show_theme.ShowThemeValidateViewTests.executor": "Run",
-    "Django tests.Test: shows.tests.tests_show_theme.UnauthenticatedShowThemeApiTests.executor": "Run",
-    "Django tests.Test: shows.tests.tests_show_theme.executor": "Run",
-    "Django tests.Test: shows.tests.tests_ticket.AuthenticatedTicketApiTests.executor": "Run",
-    "Django tests.Test: shows.tests.tests_ticket.AuthenticatedTicketApiTests.test_create_ticket.executor": "Run",
-    "Django tests.Test: shows.tests.tests_ticket.AuthenticatedTicketApiTests.test_list_ticket.executor": "Run",
-    "Django tests.Test: shows.tests.tests_ticket.AuthenticatedTicketApiTests.test_not_create_ticket.executor": "Run",
-    "Django tests.Test: shows.tests.tests_ticket.AuthenticatedTicketApiTests.test_request_user_list.executor": "Run",
-    "Django tests.Test: shows.tests.tests_ticket.ReservationTest.executor": "Run",
-    "Django tests.Test: shows.tests.tests_ticket.ReservationTest.test_ticket_create_with_reservation.executor": "Run",
-    "Django tests.Test: shows.tests.tests_ticket.ReservationTest.test_ticket_not_create_with_reservation.executor": "Run",
-    "Django tests.Test: shows.tests.tests_ticket.TicketFilteringApiTests.executor": "Run",
-    "Django tests.Test: shows.tests.tests_ticket.TicketFilteringApiTests.test_filter_ticket_reservation_user.executor": "Run",
-    "Django tests.Test: shows.tests.tests_ticket.TicketModelsTests.executor": "Run",
-    "Django tests.Test: shows.tests.tests_ticket.TicketModelsTests.test_show_theme_str.executor": "Run",
-    "Django tests.Test: shows.tests.tests_ticket.TicketValidation.executor": "Run",
-    "Django tests.Test: shows.tests.tests_ticket.TicketValidation.test_validate_ticket_seat_range_model.executor": "Run",
-    "Django tests.Test: shows.tests.tests_ticket.UnauthenticatedTicketApiTests.executor": "Run",
-    "Django tests.Test: shows.tests.tests_ticket.executor": "Run",
-    "Python tests.Python tests for test_tickets.test_create_ticket.executor": "Run",
-    "Python tests.Python tests in test_tickets.py.executor": "Run",
-    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "develop",
-    "last_opened_file_path": "C:/Users/Asus/PycharmProjects/Planetarium",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.fileTypes",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Django Server.Planetarium.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.test_planetarium_dome.AuthenticatedShowThemeApiTests.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.test_planetarium_dome.AuthenticatedShowThemeApiTests.test_list_planetarium_dome.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.test_planetarium_dome.AuthenticatedShowThemeApiTests.test_not_create_planetarium_dome.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.test_planetarium_dome.PlanetariumDomeFilteringApiTests.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.test_planetarium_dome.PlanetariumModelsTests.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.test_planetarium_dome.PlanetariumValidateTest.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.test_planetarium_dome.PlanetariumValidateTest.test_planetarium_validate_serializers_name.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.test_planetarium_dome.PlanetariumValidateTest.test_planetarium_validate_serializers_rows.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.test_planetarium_dome.UnauthenticatedPlanetariumDomeApiTests.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.test_planetarium_dome.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_astronomy_show.AstronomyShowFilteringApiTests.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_astronomy_show.AstronomyShowFilteringApiTests.test_filter_astronomy_show_title.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_astronomy_show.AstronomyShowValidation.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_astronomy_show.AuthenticatedAstronomyShowApiTests.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_astronomy_show.AuthenticatedAstronomyShowApiTests.test_admin_show_theme.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_astronomy_show.AuthenticatedAstronomyShowApiTests.test_list_astronomy_show.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_astronomy_show.ShowThemeModelsTests.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_astronomy_show.UnauthenticatedSAstronomyShowApiTests.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_astronomy_show.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_show_session.AuthenticatedShowSessionApiTests.test_admin_create_show_session.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_show_session.AuthenticatedShowSessionApiTests.test_list_show_session.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_show_session.AuthenticatedShowSessionApiTests.test_not_create_show_session.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_show_session.ShowSessionFilteringApiTests.test_filter_show_session_astronomy_description.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_show_session.ShowSessionFilteringApiTests.test_filter_show_session_astronomy_planetarium_dome_name.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_show_session.ShowSessionFilteringApiTests.test_filter_show_session_show_name.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_show_session.ShowSessionFilteringApiTests.test_filter_show_session_show_time.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_show_session.ShowSessionModelsTestsStr.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_show_session.ShowSessionModelsTestsStr.test_show_theme_str.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_show_session.UnauthenticatedSAstronomyShowApiTests.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_show_session.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_show_theme.AuthenticatedShowThemeApiTests.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_show_theme.AuthenticatedShowThemeApiTests.test_admin_show_theme.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_show_theme.AuthenticatedShowThemeApiTests.test_list_show_theme.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_show_theme.AuthenticatedShowThemeApiTests.test_not_create_show_theme.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_show_theme.ShowThemeFilteringApiTests.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_show_theme.ShowThemeFilteringApiTests.test_filter_show_theme_name.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_show_theme.ShowThemeModelsTests.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_show_theme.ShowThemeValidateViewTests.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_show_theme.UnauthenticatedShowThemeApiTests.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_show_theme.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_ticket.AuthenticatedTicketApiTests.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_ticket.AuthenticatedTicketApiTests.test_create_ticket.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_ticket.AuthenticatedTicketApiTests.test_list_ticket.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_ticket.AuthenticatedTicketApiTests.test_not_create_ticket.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_ticket.AuthenticatedTicketApiTests.test_request_user_list.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_ticket.ReservationTest.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_ticket.ReservationTest.test_ticket_create_with_reservation.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_ticket.ReservationTest.test_ticket_not_create_with_reservation.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_ticket.TicketFilteringApiTests.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_ticket.TicketFilteringApiTests.test_filter_ticket_reservation_user.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_ticket.TicketModelsTests.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_ticket.TicketModelsTests.test_show_theme_str.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_ticket.TicketValidation.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_ticket.TicketValidation.test_validate_ticket_seat_range_model.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_ticket.UnauthenticatedTicketApiTests.executor&quot;: &quot;Run&quot;,
+    &quot;Django tests.Test: shows.tests.tests_ticket.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_tickets.test_create_ticket.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_tickets.py.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.pycharm.django.structure.promotion.once.per.project&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Asus/PycharmProjects/Planetarium&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.fileTypes&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Asus\PycharmProjects\Planetarium" />
@@ -308,7 +306,10 @@
       <updated>1717674916012</updated>
       <workItem from="1717674972990" duration="13263000" />
       <workItem from="1717748578939" duration="7155000" />
-      <workItem from="1717953639032" duration="62418000" />
+      <workItem from="1717953639032" duration="63613000" />
+      <workItem from="1718261602181" duration="676000" />
+      <workItem from="1718306682966" duration="18867000" />
+      <workItem from="1718542781439" duration="12245000" />
     </task>
     <servers />
   </component>

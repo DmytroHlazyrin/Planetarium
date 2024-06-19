@@ -45,7 +45,6 @@ set SECRET_KEY=your secret key
 ## Starting the server
 1. Create database migrations:
 ```shell
-python manage.py makemigrations
 python manage.py migrate
 ```
 2. Create superuser:
@@ -65,7 +64,7 @@ python manage.py runserver
 
 ## Start tests
 ```shell
-python manage.py test shows.tests
+python manage.py test
 ```
 
 ## Run with Docker
