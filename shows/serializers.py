@@ -101,7 +101,7 @@ class ReservationSerializer(serializers.ModelSerializer):
         read_only_fields = ["id", "user", "created_at"]
 
 
-class TicketListSerializer(TicketSerializer):
+class TicketListSerializer(serializers.ModelSerializer):
     show_session = serializers.CharField(
         source="show_session.astronomy_show.title", read_only=True
     )
@@ -145,15 +145,15 @@ class TicketCreateSerializer(serializers.ModelSerializer):
         return attrs
 
 
-class UserTicketSerializer(UserSerializer):
+class UserTicketSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
         fields = ("email",)
 
 
-class ReservationDetailSerializer(ReservationSerializer):
+class ReservationDetailSerializer(serializers.ModelSerializer):
     tickets = serializers.SerializerMethodField()
-    user = UserSerializer()  # Изменено на UserSerializer
+    user = UserSerializer()
 
     class Meta:
         model = Reservation
@@ -164,7 +164,7 @@ class ReservationDetailSerializer(ReservationSerializer):
         return TicketDetailSerializer(tickets, many=True).data
 
 
-class PlanetariumDomeTicketSerializer(PlanetariumDomeSerializer):
+class PlanetariumDomeTicketSerializer(serializers.ModelSerializer):
     planetarium_name = serializers.CharField(source="name")
 
     class Meta:
@@ -172,7 +172,7 @@ class PlanetariumDomeTicketSerializer(PlanetariumDomeSerializer):
         fields = ("planetarium_name",)
 
 
-class AstronomyShowTicketSerializer(AstronomyShowSerializer):
+class AstronomyShowTicketSerializer(serializers.ModelSerializer):
     show_name = serializers.CharField(source="title")
     show_theme = serializers.SerializerMethodField()
 
@@ -206,7 +206,7 @@ class TicketDetailSerializer(serializers.ModelSerializer):
         return UserSerializer(obj.reservation.user).data
 
 
-class AstronomyShowListSerializer(AstronomyShowSerializer):
+class AstronomyShowListSerializer(serializers.ModelSerializer):
     show_theme = serializers.SlugRelatedField(
         many=True, read_only=True, slug_field="name"
     )
@@ -216,7 +216,7 @@ class AstronomyShowListSerializer(AstronomyShowSerializer):
         fields = ("title", "description", "show_theme", "image")
 
 
-class AstronomyShowCreateSerializer(AstronomyShowSerializer):
+class AstronomyShowCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = AstronomyShow
         fields = ("title", "description", "show_theme", "image")
@@ -228,19 +228,19 @@ class AstronomyShowImageSerializer(serializers.ModelSerializer):
         fields = ("id", "image")
 
 
-class PlanetariumDomeListSerializer(PlanetariumDomeSerializer):
+class PlanetariumDomeListSerializer(serializers.ModelSerializer):
     class Meta:
         model = PlanetariumDome
         fields = ("id", "name", "rows", "seats_in_row", "capacity")
 
 
-class PlanetariumDomeCreateSerializer(PlanetariumDomeSerializer):
+class PlanetariumDomeCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = PlanetariumDome
         fields = ("id", "name", "rows", "seats_in_row")
 
 
-class ShowSessionListSerializer(ShowSessionSerializer):
+class ShowSessionListSerializer(serializers.ModelSerializer):
     astronomy_show = serializers.SlugRelatedField(
         slug_field="title",
         read_only=True
@@ -255,7 +255,7 @@ class ShowSessionListSerializer(ShowSessionSerializer):
         fields = ("astronomy_show", "planetarium_dome", "show_time", "price")
 
 
-class ShowSessionCreateSerializer(ShowSessionSerializer):
+class ShowSessionCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = ShowSession
         fields = ("astronomy_show", "planetarium_dome", "show_time", "price")
