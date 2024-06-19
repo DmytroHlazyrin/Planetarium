@@ -10,7 +10,9 @@ from rest_framework.response import Response
 from shows.models import (
     Ticket, AstronomyShow, PlanetariumDome, ShowSession, Reservation, ShowTheme
 )
-from shows.permissions import IsAdminOrIfAuthenticatedReadOnly
+from shows.schemas import ticket_list_schema, astronomy_show_list_schema, \
+    planetarium_dome_list_schema, show_session_list_schema, \
+    show_theme_list_schema, reservation_list_schema
 from shows.serializers import (
     TicketSerializer,
     TicketDetailSerializer,
@@ -73,62 +75,13 @@ class TicketViewSet(viewsets.ModelViewSet):
         reservation_obj = Reservation.objects.create(user=self.request.user)
         serializer.save(reservation=reservation_obj)
 
-    @extend_schema(
-        parameters=[
-            OpenApiParameter(name="show_session", type=OpenApiTypes.STR,
-                             description="Filter by show_session title"),
-            OpenApiParameter(name="reservation", type=OpenApiTypes.STR,
-                             description="Filter by reservation(username)"),
-            OpenApiParameter(name="planetarium_dome", type=OpenApiTypes.STR,
-                             description="Filter by planetarium_dome(name)"),
-        ],
-        examples=[
-            OpenApiExample(
-                "List Example",
-                summary="Example of listing tickets",
-                description="An example response body for listing tickets.",
-                value=[
-                    {
-                        "id": 1,
-                        "show_session": {
-                            "astronomy_show": {
-                                "title": "Galactic Journey",
-                                "description": "Explore the galaxy...",
-                                "image": "url_to_image",
-                                "show_theme": [{"name": "Space"}]
-                            },
-                            "planetarium_dome": {
-                                "name": "Main Dome",
-                                "rows": 20,
-                                "seats_in_row": 30
-                            },
-                            "show_time": "2024-06-10T14:00:00Z",
-                            "price": "20.00"
-                        },
-                        "reservation": {
-                            "user": {"email": "sample@email.com"},
-                            "created_at": "2024-06-01T10:00:00Z"
-                        }
-                    }
-                ]
-            ),
-            OpenApiExample(
-                "Create Example",
-                summary="Example of creating a ticket",
-                description="An example request body for creating a ticket.",
-                value={
-                    "show_session": 1
-                }
-            ),
-        ]
-    )
+    @ticket_list_schema
     def list(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
 
 
 class AstronomyShowViewSet(viewsets.ModelViewSet):
     queryset = AstronomyShow.objects.all().prefetch_related("show_theme")
-    permission_classes = [IsAdminOrIfAuthenticatedReadOnly]
 
     def get_serializer_class(self):
         if self.action == "list":
@@ -164,51 +117,13 @@ class AstronomyShowViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(description__icontains=description)
         return queryset.distinct()
 
-    @extend_schema(
-        parameters=[
-            OpenApiParameter(name="show_theme", type=OpenApiTypes.STR,
-                             description="Filter by show_theme(name)"),
-            OpenApiParameter(name="show_name", type=OpenApiTypes.STR,
-                             description="Filter by show_name(title)"),
-            OpenApiParameter(name="description", type=OpenApiTypes.STR,
-                             description="Filter by description(description)"),
-        ],
-        examples=[
-            OpenApiExample(
-                "List Example",
-                summary="Example of listing astronomy shows",
-                description="An example response body for list astronomy show",
-                value=[
-                    {
-                        "id": 1,
-                        "title": "Galactic Journey",
-                        "description": "Explore the galaxy...",
-                        "show_theme": [{"name": "Space"}],
-                        "image": "url_to_image"
-                    }
-                ]
-            ),
-            OpenApiExample(
-                "Create Example",
-                summary="Example of creating an astronomy show",
-                description="An example request body for "
-                            "creating an astronomy show.",
-                value={
-                    "title": "Galactic Journey",
-                    "description": "Explore the galaxy...",
-                    "show_theme": [1, 2],
-                    "image": "base64_image_data"
-                }
-            ),
-        ]
-    )
+    @astronomy_show_list_schema
     def list(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
 
 
 class PlanetariumDomeViewSet(viewsets.ModelViewSet):
     queryset = PlanetariumDome.objects.all()
-    permission_classes = [IsAdminOrIfAuthenticatedReadOnly]
 
     def get_serializer_class(self):
         if self.action == "list":
@@ -231,43 +146,7 @@ class PlanetariumDomeViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(seats_in_row=seats_in_row)
         return queryset.distinct()
 
-    @extend_schema(
-        parameters=[
-            OpenApiParameter(name="planetarium_name", type=OpenApiTypes.STR,
-                             description="Filter by planetarium_name(name)"),
-            OpenApiParameter(name="rows", type=OpenApiTypes.INT,
-                             description="Filter by rows(rows)"),
-            OpenApiParameter(name="seats_in_row", type=OpenApiTypes.INT,
-                             description="Filter by seats_in_row"),
-        ],
-        examples=[
-            OpenApiExample(
-                "List Example",
-                summary="Example of listing planetarium domes",
-                description="An example response body "
-                            "for listing planetarium domes.",
-                value=[
-                    {
-                        "id": 1,
-                        "name": "Main Dome",
-                        "rows": 20,
-                        "seats_in_row": 30
-                    }
-                ]
-            ),
-            OpenApiExample(
-                "Create Example",
-                summary="Example of creating a planetarium dome",
-                description="An example request body "
-                            "for creating a planetarium dome.",
-                value={
-                    "name": "Main Dome",
-                    "rows": 20,
-                    "seats_in_row": 30
-                }
-            ),
-        ]
-    )
+    @planetarium_dome_list_schema
     def list(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
 
@@ -275,7 +154,6 @@ class PlanetariumDomeViewSet(viewsets.ModelViewSet):
 class ShowSessionViewSet(viewsets.ModelViewSet):
     queryset = ShowSession.objects.all().select_related("astronomy_show",
                                                         "planetarium_dome")
-    permission_classes = [IsAdminOrIfAuthenticatedReadOnly]
 
     def get_serializer_class(self):
         if self.action == "list":
@@ -307,56 +185,7 @@ class ShowSessionViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(price=price)
         return queryset.distinct()
 
-    @extend_schema(
-        parameters=[
-            OpenApiParameter(name="show_name", type=OpenApiTypes.STR,
-                             description="Filter by show_name(name)"),
-            OpenApiParameter(name="description", type=OpenApiTypes.STR,
-                             description="Filter by description(description)"),
-            OpenApiParameter(name="name", type=OpenApiTypes.STR,
-                             description="Filter by name(name)"),
-            OpenApiParameter(name="show_time", type=OpenApiTypes.DATE,
-                             description="Filter by show_time(show_time)"),
-            OpenApiParameter(name="price", type=OpenApiTypes.DECIMAL,
-                             description="Filter by price"),
-        ],
-        examples=[
-            OpenApiExample(
-                "List Example",
-                summary="Example of listing show sessions",
-                description="An example response body "
-                            "for listing show sessions.",
-                value=[
-                    {
-                        "astronomy_show": {
-                            "title": "Galactic Journey",
-                            "description": "Explore the galaxy...",
-                            "show_theme": [{"name": "Space"}]
-                        },
-                        "planetarium_dome": {
-                            "name": "Main Dome",
-                            "rows": 20,
-                            "seats_in_row": 30
-                        },
-                        "show_time": "2024-06-10T14:00:00Z",
-                        "price": "20.00"
-                    }
-                ]
-            ),
-            OpenApiExample(
-                "Create Example",
-                summary="Example of creating a show session",
-                description="An example request body "
-                            "for creating a show session.",
-                value={
-                    "astronomy_show": 1,
-                    "planetarium_dome": 1,
-                    "show_time": "2024-06-10T14:00:00Z",
-                    "price": "20.00"
-                }
-            ),
-        ]
-    )
+    @show_session_list_schema
     def list(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
 
@@ -364,7 +193,6 @@ class ShowSessionViewSet(viewsets.ModelViewSet):
 class ShowThemeViewSet(viewsets.ModelViewSet):
     queryset = ShowTheme.objects.all()
     serializer_class = ShowThemeSerializer
-    permission_classes = [IsAdminOrIfAuthenticatedReadOnly]
 
     def get_queryset(self):
         queryset = self.queryset
@@ -374,12 +202,7 @@ class ShowThemeViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(name__icontains=name)
         return queryset.distinct()
 
-    @extend_schema(
-        parameters=[
-            OpenApiParameter(name="show_theme_name", type=OpenApiTypes.STR,
-                             description="Filter by theme name"),
-        ],
-    )
+    @show_theme_list_schema
     def list(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
 
@@ -403,64 +226,6 @@ class ReservationViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(user__email__icontains=email)
         return queryset.filter(user=self.request.user).distinct()
 
-    @extend_schema(
-        parameters=[
-            OpenApiParameter(
-                name="email",
-                type=OpenApiTypes.STR,
-                description="Filter by user(email)",
-            )
-        ],
-        examples=[
-            OpenApiExample(
-                "List Example",
-                summary="Example of listing reservations",
-                description="An example response body "
-                            "for listing reservations.",
-                value=[
-                    {
-                        "id": 1,
-                        "user": {
-                            "email": "john_doe@example.com",
-                        },
-                        "created_at": "2024-06-01T10:00:00Z",
-                        "tickets": [
-                            {
-                                "id": 1,
-                                "show_session": {
-                                    "astronomy_show": {
-                                        "title": "Galactic Journey",
-                                        "description": "Explore the galaxy...",
-                                        "image": "url_to_image",
-                                        "show_theme": [{"name": "Space"}]
-                                    },
-                                    "planetarium_dome": {
-                                        "name": "Main Dome",
-                                        "rows": 20,
-                                        "seats_in_row": 30
-                                    },
-                                    "show_time": "2024-06-10T14:00:00Z",
-                                    "price": "20.00"
-                                }
-                            }
-                        ]
-                    }
-                ]
-            ),
-            OpenApiExample(
-                "Create Example",
-                summary="Example of creating a reservation",
-                description="An example request body "
-                            "for creating a reservation.",
-                value={
-                    "tickets": [
-                        {
-                            "show_session": 1
-                        }
-                    ]
-                }
-            ),
-        ]
-    )
+    @reservation_list_schema
     def list(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
