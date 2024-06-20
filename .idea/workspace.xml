@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13c442fc-6cfc-44f4-b68d-481473d3c5d0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="13c442fc-6cfc-44f4-b68d-481473d3c5d0" name="Changes" comment="removed redundant test.py, edited README.md" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -271,12 +269,12 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Django Server.Planetarium" />
       <item itemvalue="Django tests.Test: shows.tests.tests_ticket.ReservationTest" />
       <item itemvalue="Django tests.Test: shows.tests.tests_ticket.ReservationTest.test_ticket_create_with_reservation" />
       <item itemvalue="Django tests.Test: shows.tests.tests_ticket.ReservationTest.test_ticket_not_create_with_reservation" />
       <item itemvalue="Django tests.Test: shows.tests.tests_ticket.TicketModelsTests" />
       <item itemvalue="Django tests.Test: shows.tests.tests_ticket.TicketModelsTests.test_show_theme_str" />
+      <item itemvalue="Django Server.Planetarium" />
     </list>
     <recent_temporary>
       <list>
@@ -310,11 +308,61 @@
       <workItem from="1718261602181" duration="676000" />
       <workItem from="1718306682966" duration="18867000" />
       <workItem from="1718542781439" duration="12245000" />
+      <workItem from="1718826832177" duration="2715000" />
     </task>
+    <task id="LOCAL-00001" summary="deleted auth classes from ManageUserView">
+      <option name="closed" value="true" />
+      <created>1718828986077</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1718828986077</updated>
+    </task>
+    <task id="LOCAL-00002" summary="changed inheritance in Serializers">
+      <option name="closed" value="true" />
+      <created>1718829102972</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1718829102972</updated>
+    </task>
+    <task id="LOCAL-00003" summary="set default permissions class in settings.py">
+      <option name="closed" value="true" />
+      <created>1718829144946</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1718829144946</updated>
+    </task>
+    <task id="LOCAL-00004" summary="moved the schemas to a separate file">
+      <option name="closed" value="true" />
+      <created>1718829225659</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1718829225659</updated>
+    </task>
+    <task id="LOCAL-00005" summary="removed redundant test.py, edited README.md">
+      <option name="closed" value="true" />
+      <created>1718829347286</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1718829347286</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="deleted auth classes from ManageUserView" />
+    <MESSAGE value="changed inheritance in Serializers" />
+    <MESSAGE value="set default permissions class in settings.py" />
+    <MESSAGE value="moved the schemas to a separate file" />
+    <MESSAGE value="removed redundant test.py, edited README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed redundant test.py, edited README.md" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Planetarium$Test__shows_tests_test_planetarium_dome_PlanetariumValidateTest_test_planetarium_validate_serializers_rows.coverage" NAME="Test: shows.tests.test_planetarium_dome.PlanetariumValidateTest.test_planetarium_validate_serializers_rows Coverage Results" MODIFIED="1718133254275" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
