@@ -1,0 +1,105 @@
+[
+  {
+    "model": "shows.showtheme",
+    "pk": 1,
+    "fields": {
+      "name": "Cosmology"
+    }
+  },
+  {
+    "model": "shows.showtheme",
+    "pk": 2,
+    "fields": {
+      "name": "Astrophysics"
+    }
+  },
+  {
+    "model": "shows.astronomyshow",
+    "pk": 1,
+    "fields": {
+      "title": "The Wonders of the Universe",
+      "description": "An amazing journey through the cosmos, exploring stars, planets, and galaxies.",
+      "image": null
+    }
+  },
+  {
+    "model": "shows.astronomyshow",
+    "pk": 2,
+    "fields": {
+      "title": "Black Holes: The Other Side of Infinity",
+      "description": "Discover the mysteries of black holes and their impact on the universe.",
+      "image": null
+    }
+  },
+  {
+    "model": "shows.astronomyshow_show_theme",
+    "pk": 1,
+    "fields": {
+      "astronomyshow_id": 1,
+      "showtheme_id": 1
+    }
+  },
+  {
+    "model": "shows.astronomyshow_show_theme",
+    "pk": 2,
+    "fields": {
+      "astronomyshow_id": 2,
+      "showtheme_id": 2
+    }
+  },
+  {
+    "model": "shows.planetariumdome",
+    "pk": 1,
+    "fields": {
+      "name": "Main Dome",
+      "rows": 20,
+      "seats_in_row": 30
+    }
+  },
+  {
+    "model": "shows.showsession",
+    "pk": 1,
+    "fields": {
+      "astronomy_show": 1,
+      "planetarium_dome": 1,
+      "show_time": "2024-06-10"
+    }
+  },
+  {
+    "model": "shows.showsession",
+    "pk": 2,
+    "fields": {
+      "astronomy_show": 2,
+      "planetarium_dome": 1,
+      "show_time": "2024-06-11"
+    }
+  },
+  {
+    "model": "shows.reservation",
+    "pk": 1,
+    "fields": {
+      "created_at": "2024-06-01T12:00:00Z",
+      "user": 1
+    }
+  },
+  {
+    "model": "shows.ticket",
+    "pk": 1,
+    "fields": {
+      "row": 1,
+      "seat": 1,
+      "show_session": 1,
+      "reservation": 1
+    }
+  },
+  {
+    "model": "shows.ticket",
+    "pk": 2,
+    "fields": {
+      "row": 1,
+      "seat": 2,
+      "show_session": 1,
+      "reservation": 1
+    }
+  }
+]
